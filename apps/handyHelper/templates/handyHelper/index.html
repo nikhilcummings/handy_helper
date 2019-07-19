@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login and Registration</title>
+    {% load static %}
+    <link rel='stylesheet' href='static/handyHelper/style.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="static/handyHelper/login.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/8693b8c8a4.js"></script>
+</head>
+<body>
+    <div id='frame' class='container-fluid' style='margin:auto'>
+        <div id='header'></div>
+        <div id='main' style='margin:auto'>
+            <div id='jumbo' class="jumbotron" style='width:400px;margin:auto;border-radius:25px'>
+                <h1 class="display-4" style='text-align:center;color:#c4bec4;'>Register</h1>
+                <form action='/register' id='loginForm' class="form-signin" method='post' novalidate>
+                    {% csrf_token %}
+                    {% if messages %}
+                    {% for msg in messages %}
+                    {% ifequal msg.tags 'fName error' %}
+                    <p style='color:red'>{{msg}}</p>
+                    {% endifequal %}
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-label-group">
+                        <input type="text" id="inputFN" name='first_name' class="form-control" placeholder="Username" required autofocus>
+                        <label for="inputFN">First Name</label>
+                    </div>
+                    {% if messages %}
+                    {% for msg in messages %}
+                    {% ifequal msg.tags 'lName error' %}
+                    <p style='color:red'>{{msg}}</p>
+                    {% endifequal %}
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-label-group">
+                        <input type="text" id="inputLN" name='last_name' class="form-control" placeholder="Username" required autofocus>
+                        <label for="inputLN">Last Name</label>
+                    </div>
+                    {% if messages %}
+                    {% for msg in messages %}
+                    {% ifequal msg.tags 'email error' %}
+                    <p style='color:red'>{{msg}}</p>
+                    {% endifequal %}
+                    {% endfor %}
+                    {% endif %}
+                    <div id="emailMsg"></div>
+                    <div class="form-label-group">
+                        <input type="email" id="inputEmail" name='email' class="form-control" placeholder="Username" required autofocus>
+                        <label for="inputEmail">Email address</label>
+                    </div>
+                    {% if messages %}
+                    {% for msg in messages %}
+                    {% ifequal msg.tags 'pw error' %}
+                    <p style='color:red'>{{msg}}</p>
+                    {% endifequal %}
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-label-group">
+                        <input type="password" id="inputPW" name='pw' class="form-control" placeholder="Username" required autofocus>
+                        <label for="inputPW">Password</label>
+                    </div>
+                    {% if messages %}
+                    {% for msg in messages %}
+                    {% ifequal msg.tags 'cpw error' %}
+                    <p style='color:red'>{{msg}}</p>
+                    {% endifequal %}
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-label-group">
+                        <input type="password" id="inputCPW" name='cpw' class="form-control" placeholder="Username" required autofocus>
+                        <label for="inputCPW">Confirm password</label>
+                    </div>
+                    <div style='text-align:center'>
+                        <button type="submit" class="btn btn-outline-light" style='box-shadow:0px 0px 25px 5px gray inset; border:none;border-radius:15px'>Register</button>
+                    </div>
+                </form>
+                <hr class="my-4">
+                <h1 class="display-4" style='text-align:center;color:#c4bec4;'>Login</h1>
+                <form action ='/validated' class="form-signin" method='post' novalidate>
+                    {% csrf_token %}
+                    {% if messages %}
+                    {% for msg in messages %}
+                    {% ifequal msg.tags 'logFail error' %}
+                    <p style='color:red'>{{msg}}</p>
+                    {% endifequal %}
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-label-group">
+                        <input type="text" id="loginEmail" name ='loginEmail' class="form-control" placeholder="Username" required autofocus>
+                        <label for="loginEmail">Email address</label>
+                    </div>
+                    {% if messages %}
+                    {% for msg in messages %}
+                    {% ifequal msg.tags 'pwFail error' %}
+                    <p style='color:red'>{{msg}}</p>
+                    {% endifequal %}
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-label-group">
+                        <input type="password" id="loginPW" name='loginPW' class="form-control" placeholder="Username" required autofocus>
+                        <label for="loginPW">Password</label>
+                    </div>
+                    <div style='text-align:center'>
+                        <button type="submit" class="btn btn-outline-light" style='box-shadow:0px 0px 20px 5px gray inset; border:none;border-radius:15px'>Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id='footer'></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>   
+</body>
+</html>

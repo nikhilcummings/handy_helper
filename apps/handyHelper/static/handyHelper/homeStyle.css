@@ -1,0 +1,36 @@
+#frame{
+    padding-left:50px;
+    padding-right:50px;
+    background: url("/static/handyHelper/bg6.jpg") 50% 0 no-repeat fixed;
+}
+#subcontainer{
+    margin-left:75px;
+}
+#header{
+    position:fixed;
+    background-color:lavender;
+    height:100px;
+    width:1000px;
+    border-radius:10px;
+    margin:auto;
+    margin-top:10px;
+    box-shadow:0px 0px 10px 7px black;
+}
+#main{
+    padding:10px;
+    margin:auto;
+}
+#jobs{
+    margin-top:110px;
+    padding:5px;
+    background:lavender;
+    width:900px;
+    border-radius:15px;
+}
+#userJobs{
+    margin-top:25px;
+    padding:5px;
+    background:lavender;
+    width:900px;
+    border-radius:15px;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wall</title>
+    {% load static %}
+    <link rel='stylesheet' href='/static/handyHelper/homeStyle.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/8693b8c8a4.js"></script>
+</head>
+<body>
+    <div id='frame'>
+        <div id='subcontainer'>
+            <div id='header' style='padding:5px'>
+                <div style='display:inline-block;color:gray;margin-left:20px;margin-top:5px'>
+                    <h1>Job</h1>
+                    <h1 style='font-size:70px;vertical-align:top;display:inline-block;margin-left:63px;margin-top:-60px'>S</h1>
+                    <h1 style='display:inline-block;vertical-align:top;margin-top:-31px;margin-left:-6px'>pace</h1>
+                </div>
+                <div style='text-align:right;display:inline-block;margin-left:635px;vertical-align:top'>
+                    <h1 style='color:gray;text-transform:capitalize;display:inline-block;margin-top:35px'>{{fn}}</h1>
+                </div>
+            </div>
+            <div id='main'>
+                <div id='jobs'>
+                        <div class="btn-group" style='margin-top:-210px;margin-left:894px'>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Menu
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="home/newjob">Add new job!</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class='dropdown-item' href='home/logout'>Log out</a>
+                                </div>
+                            </div>
+                    <h5 style='margin-top:-25px'>Everyone's Jobs:</h5>
+                    <table class="table table-hover table-dark">
+                        <thead>
+                          <tr>
+                            <th scope="col">Job</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% if jobs %}
+                            {% for job in jobs %}
+                            {% if job in ownedJobs %}
+                            {% else %}
+                            <tr>
+                                <td>{{job.title}}</td>
+                                <td>{{job.location}}</td>
+                                <td>
+                                    <a href='/home/view/{{job.id}}' style='display:inline-block'>View job</a>
+                                    {% if job.posted_by == user %}
+                                    <a href='/home/removejob/{{job.id}}' style='display:inline-block'>Remove job</a>
+                                    <a href='/home/editjob/{{job.id}}' style='display:inline-block'>Edit job</a>
+                                    {% endif %}
+                                    <a href='/home/addjob/{{job.id}}' style='display:inline-block'>Add job</a>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                <div id='userJobs'>
+                    <h5>Your Jobs:</h5>
+                    <table class="table table-hover table-dark">
+                        <thead>
+                          <tr>
+                            <th scope="col">Job</th>
+                            <th scope="col">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% if ownedJobs %}
+                            {% for job in ownedJobs %}
+                            <tr>
+                                <td>{{job.title}}</td>
+                                <td><a href='/home/view/{{job.id}}' style='display:inline-block'>View</a></td>
+                                <td><a href='/home/finishjob/{{job.id}}' style='display:inline-block'>Done</a></td>
+                                <td><a href='/home/giveupjob/{{job.id}}' style='display:inline-block'>Give Up</a></td>
+                            </tr>
+                            {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id='footer'></div>
+        </div>
+    </div>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

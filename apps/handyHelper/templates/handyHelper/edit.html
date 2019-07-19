@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Job</title>
+    {% load static %}
+    <link rel='stylesheet' href='/static/handyHelper/editStyle.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/8693b8c8a4.js"></script>
+</head>
+<body>
+    <div id='frame'>
+        <div id='header'>
+            <h5>Hello {{user.first_name}} {{user.last_name}}! Edit a job!</h5>
+        </div>
+        <div id='main'>
+            <form action='updatejob/{{id}}' method='post'>
+                {% csrf_token %}
+                <h6>Title:</h6>
+                <input type='text' name='title' value='{{title}}' class="form-control">
+                <h6>Description:</h6>
+                <input type='text' name='description' value='{{description}}' class="form-control">
+                <h6>Location:</h6>
+                <input type='text' name='location' value='{{location}}' class="form-control">
+                <button type="submit" class="btn btn-primary">Cancel</button>
+                <button type="submit" class="btn btn-primary">Edit Job!</button>   
+            </form>
+            {% if messages %}
+            {% for msg in messages %}
+            <p style='color:red'>{{msg}}</p>   
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div id='footer'></div>
+    </div>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
